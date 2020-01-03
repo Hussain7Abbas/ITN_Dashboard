@@ -1,0 +1,304 @@
+@import url('https://fonts.googleapis.com/css?family=Changa:400,600&display=swap');
+*{font-family: 'Changa', sans-serif; margin: 0px; padding: 0px; outline-width: 0px;}
+
+app-sidebar{
+  width: 200px; height: 100%;
+  background-color: #FAFAFA;
+  position: fixed;
+  top: 0px; left: calc(100% - 200px);
+  box-shadow: -3px 0px 8px 3px #efefef;
+}
+
+app-home, app-users, app-signals, app-investors, app-stocks, app-settings{
+  position: absolute;
+  top: 0px; left: 0px;
+  width: calc(100% - 200px);
+  padding-bottom: 20px;
+}
+
+app-home{padding-bottom: 0px; padding-top: 0px;}
+
+.container{
+  padding: 0 9%;
+  padding-top: 50px;
+}
+
+h1{font-size: 50px;}
+h2{font-size: 30px;}
+h3{font-size: 24px;}
+h4{font-size: 20px;}
+h5{font-size: 18px;}
+h5{font-size: 14px;}
+p{font-size: 16px;}
+
+.header-img{width: 10%; float: right; margin-right: 9%;}
+.header-title{text-align: center; width: 81%; float: right; line-height: 156%; margin-bottom: 40px;}
+.header-line{color: #9E9E9E; box-shadow: 0 4px 4px 0px #e8e8e8; margin-bottom: 30px;}
+
+#loadingSVG{clear: both; width:10%; margin: 30px 45%;}
+.loadingSVG{clear: both; width:10%; margin: 30px 45%;}
+
+
+
+
+
+
+/* ========= TOOLS ====Start==== */
+.tool{
+  height: 46px;
+  border: 2px solid #0082e5;
+  border-radius: 20px 30px 30px 20px;
+  float: right;
+  transition-property: box-shadow;
+  transition-duration: .3s;
+}
+
+.tool:hover{box-shadow: 0 0 6px 0px #61b6f8;}
+
+.tools-input{
+  border: 0;
+  float: right;
+  text-align: right;
+  font-size: 24px;
+  margin-right: 16px;
+  height: 100%;
+  width: calc(100% - 80px);
+}
+.tools-input::placeholder{color: #9E9E9E;}
+
+.tools-button{
+  float: right;
+  display: flex;
+  margin-top: -2px;
+  margin-right: -2px;
+  height: 50px; width: 50px;
+  border-radius: 30px;
+  background-color: #0082e5;
+  cursor: pointer;
+}
+
+.tools-button img{
+  height: 25px;
+  margin: auto;
+}
+
+/* ========= SEARCH ========= */
+#search{flex-grow: 5;}
+#searchCross{width: 30px; float:left; margin: 8px -20px; position: absolute; cursor: pointer; display: none; transition: transform .5s ease-in-out;}
+#searchCross:hover{transform: rotate(360deg);}
+
+/* ========= FILTER ========= */
+h3{float: right; margin-right: 25px; margin-left: 20px; line-height: 50px;}
+#filter{flex-grow: 1;}
+
+/* ========= ADD Button ========= */
+#addButton{
+  background-color: #0082e5;
+  color: white;
+  width: 200px;
+  cursor: pointer;
+  margin-bottom: 5px;
+}
+#addButton img{float: right; margin-right: -3px; margin-top: -2px;}
+#addButton h3{
+  text-align: center;
+  margin-right: 11px;
+}
+
+/* ========= ADD Button ========= */
+.modalButton{
+  color: black;
+  width: 115px;
+  cursor: pointer;
+  height: 30px;
+  float: left;
+  margin-top: 8px;
+  margin-left: 10px;
+}
+.modalButton img{float: right; height: 30px; width: 30px; margin-right: -3px; margin-top: -2px; border-radius: 60px;}
+.modalButton p{
+  border: 0;
+  float: right;
+  text-align: right;
+  height: 100%;
+  width: calc(100% - 40px);
+  line-height: 30px;
+  font-weight: 600;
+  text-align: center;
+}
+
+#saveButton{
+  background-color: white;
+  border: 2px solid #00DF61;
+  transition: box-shadow .2s;
+}
+#saveButton img{border: 2px solid #00DF61;}
+#saveButton:hover{box-shadow: 0 0 6px 0px #80fab5;}
+
+#cancelButton{
+  background-color: white;
+  border: 2px solid #E80000;
+  transition: box-shadow .2s;
+}
+#cancelButton img{border: 2px solid #E80000;}
+#cancelButton:hover{box-shadow: 0 0 6px 0px #ff5050;}
+
+#search-tools{display: flex; margin-bottom: 10px;}
+#add-tools > h3{line-height: 50px; float: left; margin:0;}
+/* ========= TOOLS ====End==== */
+
+
+
+
+
+
+
+
+/* ========= CARD ====start==== */
+.card{
+  height: fit-content;
+  border: 2px solid #04C257;
+  border-radius: 10px;
+  float: right;
+  transition-property: box-shadow transform;
+  transition-duration: .3s;
+  width: 32.4%;
+  margin-top: 5px;
+  margin-left: .5%;
+  transition: background-color .5;
+}
+
+.card:hover{box-shadow: 0 0 6px 0px #e9e9e9;}
+
+.v-line{
+  width: 1px; height: 30px; background-color: #9E9E9E; float: right; margin-left: 15px;
+}
+.h-line{
+  height: 1px; width: 100%; background-color: #9E9E9E; clear: both;
+}
+
+.card-Button{
+  margin: 2px 2.5px;
+  float: right;
+  display: flex;
+  height: 26px; width: 26px;
+  border-radius: 60px;
+  background-color: #683891;
+  cursor: pointer;
+  transition: transform .2s, box-shadow .2s;
+}.card-Button img{height: 13px; margin: auto;}
+
+.card-header{padding: 3px 15px; height: 30px; display: flex;} .card-header img{height: 22px; margin: 4px;}
+.card-header h4{line-height: 30px;} .card-title{color: black; margin-right: 10px; flex-grow: 1;} .card-pairs{float: left; color: #3B0AB1;}
+.card-body{padding: 0 15px;} .card-body .halfDiv{width: 50%; float: left;} .card-body .halfDiv * {float: left; clear: both;}
+.card-footer{display: flex; padding: 3px 0; height: 30px;} .card-footer p{flex-grow: 1; text-align: center; line-height: 30px; overflow: hidden; white-space: nowrap; margin: 0 5px;}
+.inves-info{clear: both; height: 33px; display: flex;} .inves-info *{float: left; line-height: 33px; overflow: hidden; white-space: nowrap;} .inves-info img{width: 25px; display: block; margin: 4px 0; margin-right: 5px;} .inves-info h4{flex-grow: 1;}
+
+.edit-btn{background-color: #0082E5;}
+.delete-btn{background-color: #E80000; margin-left: 15px;}
+.close-btn{background-color: #707070;}
+.edit-btn:hover{box-shadow: 0 0 6px 0px #61b6f8; transform: scale(1.03);}
+.delete-btn:hover{box-shadow: 0 0 6px 0px #ff5050; transform: scale(1.03);}
+.close-btn:hover{box-shadow: 0 0 6px 0px #5c5c5c; transform: scale(1.03);}
+
+.card-sell{border: 2px solid #E80000;} .card-sell .v-line, .card-sell .h-line{background-color: #FFA8A8;} .card-sell .card-title{color: #E80000;}
+.card-buy{border: 2px solid #04C257;} .card-buy .v-line, .card-buy .h-line{background-color: #20FF6A;} .card-buy .card-title{color: #04C257;}
+.card-close{border: 2px solid #707070; background-color: #FAFAFA;} .card-close .v-line, .card-close .h-line{background-color: #9E9E9E;} .card-close .card-title{color: #707070;}
+/* .data-name{font-size: 24px; width: 100%; height: 36px; overflow: hidden; white-space: nowrap;} */
+/* ========= CARD ====End==== */
+
+/* ======= MODAL ======= */
+
+#modal{
+  height: 100%; width: 100%;
+  position: absolute;
+  top: 0px;
+  display: none;
+}
+
+#modal-background{
+  position: fixed; top: 0px; display: flex;
+  height: 100%; width: 100%;
+  background-color: #5c5c5c5d;
+}
+
+.modal-container{
+  margin: auto 17%;
+  max-height: 90vh; width: 50%;
+  background-color: white;
+  border: 2px solid #0F00E5; border-radius: 20px;
+  box-shadow: 0px 0px 7px #08007b;
+  border-radius: 20px;
+}
+
+.modal-header{
+  height: 50px; width: 100%;
+  margin-top: -2px; margin-right: -2px;
+  border: 2px solid #0F00E5; border-radius: 20px 20px 0 0;
+}
+
+.modal-header h4{line-height: 50px; text-align: center;}
+
+.modal-body{
+  overflow-y: scroll; overflow-x: hidden;
+  max-height: calc(90vh - 114px);
+  padding: 5px 20px;
+}
+
+.modal-footer{
+  height: 50px; width: calc(100% - 40px);
+  margin-right: -2px; margin-bottom: -2px;
+  border: 2px solid #0F00E5; border-radius: 0 0 20px 20px;
+  padding: 0px 20px;
+}
+.modal-input-div{margin-top: 5px; clear: both;}
+.modal-input-div h4{float: right; margin-right: 8px;}
+.modal-input-div textarea{height: 200px; min-height: 100px; max-width: calc(100% - 20px); min-width: calc(100% - 20px);}
+
+.modal-input{
+  border: 1px solid #0F00E5; border-radius: 10px;
+  padding: 0 10px;
+  font-size: 18px;
+  width: calc(100% - 20px);
+}
+
+.modal-input-file{float: right; margin: 6.5px 10px;}
+
+.modal-img-div{margin: 10px 0; clear: both; display: flex;}
+.modal-img-div img{border-radius: 10px; max-width: 100%; box-shadow: 0px 0px 4px 2px #e4e4e4; margin: auto;}
+
+
+.modal-container input{text-align: center;}
+
+
+/* ========= My Button ========= */
+.my-button{
+  background-color: #0082e5;
+  color: white;
+  width: 200px;
+  cursor: pointer;
+  float: left;
+}
+
+.my-button h3{
+  font-size: 18px;
+  line-height: 50px;
+  margin: 0px;
+  height: 100%;
+  width: calc(100% - 58px);
+  text-align: center;
+}
+
+.my-button .tools-button{background-color: white; margin-right: -3px;}
+
+.centerXY{display: block; margin: auto;}
+
+.modalDetails{display: flex; text-align: center;}
+.modalDetails .modal-input-div{clear: none; margin: auto 10px;}
+.modalDetails .modal-input-div, .modalDetails .modal-input{text-align: center;}
+.modalDetails .modal-input-div h4{width: 100%; margin: 0;}
+
+input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

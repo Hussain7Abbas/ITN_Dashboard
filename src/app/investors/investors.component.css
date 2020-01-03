@@ -1,0 +1,11 @@
+.tool{border: 2px solid #04C257;}
+.tool:hover{box-shadow: 0 0 6px 0px #00d15b;}
+.tools-button{background-color: #04C257;}
+#addButton{background-color: #04C257;}
+
+.modal-container{border: 2px solid #04C257; box-shadow: 0px 0px 7px #003d6b;}
+.modal-footer{border: 2px solid #04C257;}
+.modal-header{border: 2px solid #04C257;}
+.modal-input{border: 1px solid #04C257;}
+
+.card-title{text-align: center;}

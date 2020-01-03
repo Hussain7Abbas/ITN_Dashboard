@@ -1,0 +1,50 @@
+#header{
+  text-align: center;
+}
+
+#header h2{line-height: 1; margin: 10px 5px;}
+
+#header img{
+  display: block; cursor: pointer; width: 150px; margin: auto;
+}
+
+.sidebarItem{
+  height: 40px;
+  padding: 0px 10px;
+  cursor: pointer;
+  transition: background-color .3s, padding .3s, margin-right .3s;
+}
+
+.sidebarItem .line{
+  height: 100%; float: right; width: 0px;
+  transition: width .3s;
+}
+.sidebarItem:hover > .line{
+  height: 100%; float: right; width: 15px;
+}
+
+.sidebarItem:hover{
+  padding: 0px;
+  margin-right: 25px;
+}
+
+.activeSidebarItem{margin-right: 0px; transition: margin-right 1s .1s;}
+.activeSidebarItem:hover{
+  transition: margin-right .3s, padding .3s;
+  padding: 0px;
+  margin-right: 25px;
+}
+
+.activeSidebarItem .line{
+  height: 100%; float: right; width: 15px;
+  transition: width .3s;
+}
+
+.sidebarItem img{
+  float: right; height: 20px; margin: 10px 10px; margin-bottom: 0px;
+}
+
+.sidebarItem h4{
+  line-height: 39px; overflow: hidden;
+  text-align: right;
+}

@@ -1,0 +1,117 @@
+<div class="container">
+  <!-- ========= HEADER ====Start==== -->
+  <img class="header-img" src="../../assets/imgs/users.png">
+  <h1 class="header-title">المشتركين</h1>
+  <hr class="header-line">
+  <!-- ========= HEADER ====End==== -->
+  <div id="search-tools">
+    <div class="tool" id="search">
+      <div class="tools-button">
+        <img src="../../assets/imgs/searchIconW.png">
+      </div>
+      <input class="tools-input" type="text" placeholder="بحث" (keydown)="searchCross()" (change)="searchUsers()" [(ngModel)]="search.searchText">
+      <img id="searchCross" src="../../assets/imgs/cancelIcon.png" (click)="searchCancel()">
+    </div>
+    <h3>بحث حسب</h3>
+    <div class="tool" id="filter">
+      <div class="tools-button">
+        <img src="../../assets/imgs/filterIconW.png">
+      </div>
+      <select class="tools-input" [(ngModel)]="search.searchCol">
+        <option value="name" selected="selected">الاسم</option>
+        <option value="idUs">المعرف</option>
+        <option value="gender">الجنس</option>
+        <option value="phone">رقم الهاتف</option>
+        <option value="address">العنوان</option>
+        <option value="XM">حساب XM</option>
+        <option value="TNFX">حساب TNFX</option>
+        <option value="joinDay">تاريخ التجديد</option>
+        <option value="joinDate">تاريخ الانظمام</option>
+      </select>
+    </div>
+  </div>
+  <div id="add-tools">
+    <div class="tool" id="addButton" (click)="openModal()">
+      <img src="../../assets/imgs/addIcon.png">
+      <h3 class="tools-input">اضافة</h3>
+    </div>
+    <h3>العدد&nbsp;&nbsp;&nbsp;<span style="color: #00DF61">{{users.length}}</span>&nbsp;&nbsp;&nbsp;من&nbsp;&nbsp;&nbsp;<span style="color: #0F00E5">{{dataCount}}</span></h3>
+  </div>
+
+  <div id="noSearchResults" style="display: none; height: 200px;">
+    <h3 style="margin: auto;">لا توجد نتائج بحث لعرضها</h3>
+  </div>
+  <div class="user animated fadeIn" *ngFor="let user of users; let i = index" id="{{user.idUs}}">
+    <img class="user-img" src="../../assets/imgs/userPic.png">
+    <div style="padding: 5px 0; display: flex;">
+
+      <div style="flex-grow: 1; margin: 0 15px;">
+        <h3 class="data-name">{{user.name}}</h3>
+      </div>
+
+
+      <div style="float: left;">
+        <div class="v-line"></div>
+        <h3 style="color: #9E9E9E;">{{user.phone}}</h3>
+        <div class="v-line"></div>
+        <h3 [ngStyle]="{'color': userDays(user.joinDay) > 20 ? '#00DF61' : userDays(user.joinDay) > 10 ? '#0082E5' : '#E80000'}" dir="ltr"><span>{{userDays(user.joinDay)}}</span> Days</h3>
+        <div class="v-line"></div>
+        <h3 style="color: #9E9E9E;">{{user.idUs}}</h3>
+        <div class="v-line"></div>
+        <div class="user-Button edit-btn" (click)="editUser(user)" *ngIf="userDays(user.joinDay) > 0">
+          <img src="../../assets/imgs/editIcon.png">
+        </div>
+        <div class="user-Button edit-btn" (click)="rejoinUser(user)" *ngIf="userDays(user.joinDay) < 0" style="background-color: #00DF61">
+          <img src="../../assets/imgs/rejoinUser.png">
+        </div>
+        <div class="user-Button delete-btn" (click)="deleteUser(user.idUs, i)">
+          <img src="../../assets/imgs/deleteIcon.png">
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+
+  <img id="loadingSVG" src="../../assets/loadingSVGB.svg">
+
+
+</div>
+
+
+
+
+
+
+  <!-- Modal -->
+  <div id="modal">
+    <div id="modal-background">
+
+      <div class="modal-container animated fadeInDown">
+        <div class="modal-header"><h4>اضافة متداول</h4></div>
+
+        <div class="modal-body animated" id="modal-body">
+          <div class="modal-input-div animated flipInX delay-1s"><h4>الاسم:</h4><input #name="ngModel" required maxlength="20" type="text" class="modal-input" [(ngModel)]="user.name"></div>
+          <div class="modal-input-div animated flipInX delay-1s"><h4>الجنس:</h4><select class="modal-input" style="width: 100%; padding: 0 10px;" [(ngModel)]="user.gender">
+            <option value="1" selected="selected">ذكر</option>
+            <option value="0">انثى</option>
+          </select></div>
+          <div class="modal-input-div animated flipInX delay-1s"><h4>رقم الهاتف:</h4><input #phone="ngModel" required maxlength="11" type="tel" class="modal-input" [(ngModel)]="user.phone"></div>
+          <div class="modalDetails">
+            <div class="modal-input-div animated flipInX delay-1s"><h4>XM ID:</h4><input #XMid="ngModel" required maxlength="10" type="text" class="modal-input" [(ngModel)]="XM.id"></div>
+            <div class="modal-input-div animated flipInX delay-1s"><h4>XM Password:</h4><input #XMpass="ngModel" required maxlength="17" type="text" class="modal-input" [(ngModel)]="XM.password"></div>
+          </div>
+          <div class="modalDetails">
+            <div class="modal-input-div animated flipInX delay-1s"><h4>TNFX ID:</h4><input #TNFXid="ngModel" required maxlength="10" type="text" class="modal-input" [(ngModel)]="TNFX.id"></div>
+            <div class="modal-input-div animated flipInX delay-1s"><h4>TNFX Password:</h4><input #TNFXpass="ngModel" required maxlength="17" type="text" class="modal-input" [(ngModel)]="TNFX.password"></div>
+          </div>
+          <div class="modal-input-div animated flipInX delay-1s"><h4>العنوان:</h4><textarea #address="ngModel" maxlength="50"type="text" class="modal-input" [(ngModel)]="user.address"></textarea></div>
+        </div>
+
+        <div class="modal-footer">
+          <div id="saveButton" class="tool modalButton animated swing delay-1s" (click)="saveModal()"><img src="../../assets/imgs/saveIcon.png"><p>حفظ</p></div>
+          <div id="cancelButton" class="tool modalButton animated swing delay-1s" (click)="cancelModal()"><img src="../../assets/imgs/cancelIcon.png"><p>الغاء</p></div>
+        </div>
+
+    </div>
+  </div>

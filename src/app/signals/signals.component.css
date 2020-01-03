@@ -1,0 +1,9 @@
+.tool{border: 2px solid #683891;}
+.tool:hover{box-shadow: 0 0 6px 0px #472366;}
+.tools-button{background-color: #683891;}
+#addButton{background-color: #683891;}
+
+.modal-container{border: 2px solid #683891; box-shadow: 0px 0px 7px #003d6b;}
+.modal-footer{border: 2px solid #683891;}
+.modal-header{border: 2px solid #683891;}
+.modal-input{border: 1px solid #683891;}

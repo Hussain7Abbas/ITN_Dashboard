@@ -1,0 +1,117 @@
+<div class="container">
+  <!-- ========= HEADER ====Start==== -->
+  <img class="header-img" src="../../assets/imgs/signals.png">
+  <h1 class="header-title">التوصيات</h1>
+  <hr class="header-line">
+  <!-- ========= HEADER ====End==== -->
+  <div id="search-tools">
+    <div class="tool" id="search">
+      <div class="tools-button">
+        <img src="../../assets/imgs/searchIconW.png">
+      </div>
+      <input class="tools-input" type="text" placeholder="بحث" (keydown)="searchCross()" (change)="searchSignals()" [(ngModel)]="search.searchText">
+      <img id="searchCross" src="../../assets/imgs/cancelIcon.png" (click)="searchCancel()">
+    </div>
+    <h3>بحث حسب</h3>
+    <div class="tool" id="filter">
+      <div class="tools-button">
+        <img src="../../assets/imgs/filterIconW.png">
+      </div>
+      <select class="tools-input" [(ngModel)]="search.searchCol">
+        <option value="pairs" selected="selected">الزوج</option>
+        <option value="action">العملية</option>
+        <option value="lotXM">الكميةXM</option>
+        <option value="lotTNFX">الكمية TNFX</option>
+        <option value="date">التاريخ</option>
+      </select>
+    </div>
+  </div>
+  <div id="add-tools">
+    <div class="tool" id="addButton" (click)="openModal()">
+      <img src="../../assets/imgs/addIcon.png">
+      <h3 class="tools-input">اضافة</h3>
+    </div>
+    <h3>العدد&nbsp;&nbsp;&nbsp;<span style="color: #00DF61">{{signals.length}}</span>&nbsp;&nbsp;&nbsp;من&nbsp;&nbsp;&nbsp;<span style="color: #0F00E5">{{dataCount}}</span></h3>
+  </div>
+
+  <div style="clear: both;">
+    <div id="noSearchResults" style="display: none; height: 200px;">
+      <h3 style="margin: auto;">لا توجد نتائج بحث لعرضها</h3>
+    </div>
+
+
+
+    <div *ngFor="let signal of signals; let i = index" class="card animated fadeIn {{cardClass(signal.status, signal.action)}}" id="{{signal.idSi}}">
+      <div class="card-header">
+        <img style="float: right;" src="../../assets/imgs/{{cardImg(signal.status, signal.action)}}">
+        <h4 class="card-title">{{getAction(signal.action)}}</h4>
+        <h4 class="card-pairs">{{signal.pairs?.toUpperCase().slice(0, 3)}} | {{signal.pairs?.toUpperCase().slice(3, 6)}}</h4>
+      </div>
+      <div class="h-line"></div>
+      <div class="card-body">
+        <div class="halfDiv">
+          <h4>XM: {{signal.lotXM}}</h4>
+          <h4>TNFX: {{signal.lotTNFX}}</h4>
+        </div>
+        <div class="halfDiv">
+          <h4 style="color: #04C257;">TP: {{signal.tp}}</h4>
+          <h4 style="color: #E80000;">SL: {{signal.sl}}</h4>
+        </div>
+      </div>
+      <div class="h-line"></div>
+      <div class="card-footer">
+        <p dir="ltr">{{signal.date}}</p>
+        <div class="v-line"></div>
+        <div class="card-Button close-btn" (click)="closeSignal(signal.idSi, i)" *ngIf="signal.status">
+          <img src="../../assets/imgs/closeIcon.png">
+        </div>
+        <div class="card-Button edit-btn" (click)="editSignal(signal)" *ngIf="signal.status">
+          <img src="../../assets/imgs/editIcon.png">
+        </div>
+        <div class="card-Button delete-btn" (click)="deleteSignal(signal.idSi, i)">
+          <img src="../../assets/imgs/deleteIcon.png">
+        </div>
+      </div>
+
+    </div>
+
+
+    <img id="loadingSVG" src="../../assets/loadingSVGB.svg">
+  </div>
+
+</div>
+
+
+
+
+
+
+  <!-- Modal -->
+  <div id="modal">
+    <div id="modal-background">
+
+      <div class="modal-container animated fadeInDown">
+        <div class="modal-header"><h4>اضافة متداول</h4></div>
+
+        <div class="modal-body animated" id="modal-body">
+          <div class="modal-input-div animated flipInX delay-1s"><h4>الزوج:</h4><input #name="ngModel" required maxlength="6" type="text" class="modal-input" [(ngModel)]="signal.pairs"></div>
+          <div class="modal-input-div animated flipInX delay-1s"><h4>العملية:</h4><select class="modal-input" style="width: 100%; padding: 0 10px;" [(ngModel)]="signal.action">
+            <option value="1" selected="selected">شراء</option>
+            <option value="0">بيع</option>
+          </select></div>
+
+          <div class="modalDetails">
+            <div class="modal-input-div animated flipInX delay-1s"><h4>TP:</h4><input #TP="ngModel" required maxlength="8" type="tel" class="modal-input" placeholder="0.0" [(ngModel)]="signal.tp"></div>
+            <div class="modal-input-div animated flipInX delay-1s"><h4>SL:</h4><input #SL="ngModel" required maxlength="8" type="tel" class="modal-input" placeholder="0.0" [(ngModel)]="signal.sl"></div>
+            <div class="modal-input-div animated flipInX delay-1s"><h4>Lots XM:</h4><input #LotsXM="ngModel" required maxlength="11" type="number" class="modal-input" placeholder="1" [(ngModel)]="signal.lotXM"></div>
+            <div class="modal-input-div animated flipInX delay-1s"><h4>Lots TNFX:</h4><input #LotsTNFX="ngModel" required maxlength="11" type="number" class="modal-input" placeholder="1" [(ngModel)]="signal.lotTNFX"></div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <div id="saveButton" class="tool modalButton animated swing delay-1s" (click)="saveModal()"><img src="../../assets/imgs/saveIcon.png"><p>حفظ</p></div>
+          <div id="cancelButton" class="tool modalButton animated swing delay-1s" (click)="cancelModal()"><img src="../../assets/imgs/cancelIcon.png"><p>الغاء</p></div>
+        </div>
+
+    </div>
+  </div>

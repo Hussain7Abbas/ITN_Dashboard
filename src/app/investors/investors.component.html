@@ -1,0 +1,96 @@
+<div class="container">
+  <!-- ========= HEADER ====Start==== -->
+  <img class="header-img" src="../../assets/imgs/investors.png">
+  <h1 class="header-title">المستثمرين</h1>
+  <hr class="header-line">
+  <!-- ========= HEADER ====End==== -->
+  <div id="search-tools">
+    <div class="tool" id="search">
+      <div class="tools-button">
+        <img src="../../assets/imgs/searchIconW.png">
+      </div>
+      <input class="tools-input" type="text" placeholder="بحث" (keydown)="searchCross()" (change)="searchinvestors()" [(ngModel)]="search.searchText">
+      <img id="searchCross" src="../../assets/imgs/cancelIcon.png" (click)="searchCancel()">
+    </div>
+    <h3>بحث حسب</h3>
+    <div class="tool" id="filter">
+      <div class="tools-button">
+        <img src="../../assets/imgs/filterIconW.png">
+      </div>
+      <select class="tools-input" [(ngModel)]="search.searchCol">
+        <option value="name" selected="selected">الاسم</option>
+        <option value="phone">رقم الهاتف</option>
+        <option value="email">الايميل</option>
+        <option value="price">المبلغ</option>
+      </select>
+    </div>
+  </div>
+  <div id="add-tools">
+    <div class="tool" id="addButton" (click)="openModal()">
+      <img src="../../assets/imgs/addIcon.png">
+      <h3 class="tools-input">اضافة</h3>
+    </div>
+    <h3>العدد&nbsp;&nbsp;&nbsp;<span style="color: #00DF61">{{investors.length}}</span>&nbsp;&nbsp;&nbsp;من&nbsp;&nbsp;&nbsp;<span style="color: #0F00E5">{{dataCount}}</span></h3>
+  </div>
+
+  <div style="clear: both;">
+    <div id="noSearchResults" style="display: none; height: 200px;">
+      <h3 style="margin: auto;">لا توجد نتائج بحث لعرضها</h3>
+    </div>
+
+
+
+    <div *ngFor="let investor of investors; let i = index" class="card animated fadeIn" id="{{investor.idIn}}">
+      <div class="card-header">
+        <img src="../../assets/imgs/investorImg.png">
+        <h4 class="card-title">{{investor.name}}</h4>
+      </div>
+      <div class="h-line"></div>
+      <div class="card-body" dir="ltr">
+        <div class="inves-info"><img src="../../assets/imgs/phoneImg.png"><h4>{{investor.phone}}</h4></div>
+        <div class="inves-info"><img src="../../assets/imgs/emailImg.png"><h4>{{investor.email}}</h4></div>
+        <div class="inves-info"><img src="../../assets/imgs/moneyImg.png"><h4>{{convertToPrice(investor.price)}}</h4></div>
+      </div>
+      <div class="h-line"></div>
+      <div class="card-footer">
+        <p dir="ltr">{{investor.date}}</p>
+        <div class="v-line"></div>
+        <div class="card-Button edit-btn" (click)="editinvestor(investor)">
+          <img src="../../assets/imgs/editIcon.png">
+        </div>
+        <div class="card-Button delete-btn" (click)="deleteinvestor(investor.idIn, i)">
+          <img src="../../assets/imgs/deleteIcon.png">
+        </div>
+      </div>
+
+    </div>
+
+
+    <img id="loadingSVG" src="../../assets/loadingSVGB.svg">
+  </div>
+
+</div>
+
+
+
+  <!-- Modal -->
+  <div id="modal">
+    <div id="modal-background">
+
+      <div class="modal-container animated fadeInDown">
+        <div class="modal-header"><h4>اضافة مستثمر</h4></div>
+
+        <div class="modal-body animated" id="modal-body">
+          <div class="modal-input-div animated flipInX delay-1s"><h4>الاسم:</h4><input #name="ngModel" required maxlength="20" type="text" class="modal-input" [(ngModel)]="investor.name"></div>
+          <div class="modal-input-div animated flipInX delay-1s"><h4>الايميل:</h4><input #email="ngModel" required maxlength="30" type="text" class="modal-input" [(ngModel)]="investor.email"></div>
+          <div class="modal-input-div animated flipInX delay-1s"><h4>الهاتف:</h4><input #phone="ngModel" required maxlength="11" type="tel" class="modal-input" [(ngModel)]="investor.phone"></div>
+          <div class="modal-input-div animated flipInX delay-1s"><h4>مبلغ الاستثمار ($):</h4><input #price="ngModel" required maxlength="11" type="tel" class="modal-input" [(ngModel)]="investor.price"></div>
+        </div>
+
+        <div class="modal-footer">
+          <div id="saveButton" class="tool modalButton animated swing delay-1s" (click)="saveModal()"><img src="../../assets/imgs/saveIcon.png"><p>حفظ</p></div>
+          <div id="cancelButton" class="tool modalButton animated swing delay-1s" (click)="cancelModal()"><img src="../../assets/imgs/cancelIcon.png"><p>الغاء</p></div>
+        </div>
+
+    </div>
+  </div>
